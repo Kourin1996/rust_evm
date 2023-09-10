@@ -1,3 +1,9 @@
+extern crate vm;
+
+use vm::EVM;
+
 fn main() {
-    println!("Hello, world!");
+    let evm: vm::machine::Machine = vm::machine::Machine::new();
+
+    evm.run();
 }
