@@ -1,9 +1,12 @@
-extern crate vm;
-
-use vm::EVM;
+use vm;
+use eth;
 
 fn main() {
-    let evm: vm::machine::Machine = vm::machine::Machine::new();
+    let mut machine = vm::machine::Machine {
+        instruction_sets: vec![],
+        codes: vec![1, 2, 3],
+        pc: 0,
+    };
 
-    evm.run();
+    machine.run();
 }
