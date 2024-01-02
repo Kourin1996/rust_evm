@@ -1,3 +1,3 @@
-mod memory;
-mod stack;
-mod storage;
+pub mod memory;
+pub mod stack;
+pub mod storage;

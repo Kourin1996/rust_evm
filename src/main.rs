@@ -1,13 +1,26 @@
-use vm::runner::interpreter::Interpreter;
+use store::stack::stack::InMemoryStack;
+use vm::runner::runner::Runner;
 
 fn main() {
     println!("Hello, World");
 
-    let mut i = Interpreter::new();
+    let codes = vec![
+        0x60, // PUSH1
+        0xF0, // value
+        0x60, // PUSH1
+        0x01, // value
+        0x01, // ADD
+        0x00,
+    ];
 
-    i.step();
-    println!("ip={}", i.get_instruction_pointer());
+    let mut i = Runner::new(&codes, InMemoryStack::new());
 
-    i.step();
-    println!("ip={}", i.get_instruction_pointer());
+    match i.run() {
+        Ok(res) => {
+            println!("succeeded with result {:?}", res);
+        }
+        Err(err) => {
+            println!("failed with err {:?}", err);
+        }
+    }
 }
